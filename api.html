@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="photo/artificial-intelligence.png">
+    <title>Osama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/api.css">
+    <script>
+        function havaDurumuGetir(cityID,bessem){
+fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityID + '&lang=tr&appid=' + bessem)
+            .then(function(resp){return resp.json()})
+            .then(function(data){ havaDurumuGoster(data);})
+
+        }
+        function havaDurumuGoster(d){
+            var celcius=Math.round(parseFloat(d.main.temp)-273.15);
+            var f=Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
+            var aciklama=d.weather[0].description;
+            document.getElementById('aciklama').innerHTML=aciklama;
+            document.getElementById('sicaklik').innerHTML=celcius+'&deg;';
+            document.getElementById('konum').innerHTML=d.name;
+
+
+        }
+        const apiKey = "b6a28279c5f07bddb2726a94b0114cb9";
+const city = "Sakarya";
+const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    if (data.cod === 200) {
+      const temperature = data.main.temp;
+      const humidity = data.main.humidity;
+      const description = data.weather[0].description;
+
+      const weatherInfoElement = document.getElementById("weather-info");
+      weatherInfoElement.innerHTML = `
+        <p>Hava Durumu: ${description}</p>
+        <p>Sıcaklık: ${temperature}°C</p>
+        <p>Nem Oranı: ${humidity}%</p>
+      `;
+    } else {
+      const weatherInfoElement = document.getElementById("weather-info");
+      weatherInfoElement.innerHTML = "Hava durumu bilgisi alınamadı.";
+    }
+  })
+  .catch(error => {
+    const weatherInfoElement = document.getElementById("weather-info");
+    weatherInfoElement.innerHTML = "Hata oluştu: " + error;
+  });
+
+   
+    </script>
+</head>
+<body>
+      <header class="header" >
+        <div id="menubar" class="fa-solid fa-bars"></div>
+        <a href="index.html"class="logo">Osama 
+            <span>syr</span>
+        </a>
+        <nav class=navc>
+            <a href="index.html">Home</a>
+            <a href="indexcv.html" >CV</a>
+            <a href="indexMyCity.html" >MyCity</a>
+            <a href="api.html" >Interests</a>
+            <a href="Communication.html" >Communication</a>
+        </nav>
+        <div id="login-btn">
+                <button type="button" class="bz">login</button>
+                <i class="fa-solid fa-user"></i>
+            </div>
+    </header>
+    <!-- <section class="loginfrm"> 
+        <span class="fa-solid fa-xmark" id="close-login-btn"></span>
+        <form action="logi.php8" method="post">
+            <h3>login </h3>
+            <input type="email" placeholder="email" class="box">
+            <input type="password" placeholder="password" class="box" id="kullaniciAdi" name="kullaniciAdi">
+            <input type="submit" value="login now" class="bz" id="sifre" name="sifre">
+                        <button type="reset" class="bz" >Temizle</button>
+
+            <p>or login with</p>
+            <div class="btns">
+                <a href="#" class="bz">google</a>
+                <a href="#" class="bz">facebook</a>
+            </div>
+        </form>
+    </section> -->
+  
+    <section class="cards" id="services">
+        <h2 class="title">weather</h2>
+        <div class="content">
+           
+            <!-- <div class="card">
+                <img src="photo/" alt="" >
+                <div class="icon"><i class='bx bxs-map'></i></div>
+                <div class="info">
+                    <a href="https://goo.gl/maps/awDKPcRrpyVE4b9LA"> > Konumu gör </a>
+                    <br><br>
+                    <h3>Hatay</h3>
+                    <p>
+                    <div>
+                        <div id="aciklama"></div>
+                        <h1 id="sicaklik"></h1>
+                        <div id="konum"></div>
+                    </div>
+                  </p><button id="goster" onclick="havaDurumuGetir('hatay','912d3940b8546068dec1635d550fbd6d')">Hava Durumu Goster</button>
+
+                </div>
+            </div> -->
+            <div class="card">
+                <img src="photo/" alt="" >
+                <div class="icon"><i class='bx bxs-map'></i></div>
+                <div class="info">
+                    <a href="https://goo.gl/maps/XooWmrvo2C4qHHRe9"> > Konumu gör </a>
+                    <br><br>
+                    <h3>Sakarya</h3>
+                    <h1>Hava Durumu</h1>
+                    <div id="weather-info"></div>
+                    <p><br></p>
+                </div>
+            </div>
+            
+
+     
+           
+            
+            
+
+        </div>
+    </section>
+
+
+<footer class="foo">
+        <div class="soc">
+            <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/osamaasker30" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/UsemeMuhAsker" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <a href="api.html">
+        <i class="fa-solid fa-arrow-up" ></i>
+        </a>
+        </footer>
+
+
+
+
+
+       <script>let menuIcon=document.querySelector('#menu-icon');
+        let navbar=document.querySelector('.navbar');
+        
+        menuIcon.onclick=()=>{
+            menuIcon.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        }
+        
+        
+        let sections=document.querySelectorAll('section');
+        let navlinks=document.querySelectorAll('header nav a');
+        
+        window.onscroll=()=>{
+            sections.forEach(sec=>{
+                let top =window.scrollY;
+                let offset=sec.offsetTop-100;
+                let height=sec.offsetHeight;
+                let id=sec.getAttribute('id');
+        
+                if(top>=offset&&top<offset+height){
+                    
+                    navlinks.forEach(links =>{
+                        links.classList.remove('active');
+                        document.querySelector('header nav a[href*='+ id +']').classList.add('active');
+        
+                    });
+                }
+            });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            let header=document.querySelector('header');
+            header.classList.toggle('sticky',window.scrollY>100);
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+        
+        }</script>
+    
+</body>      
+</html>
